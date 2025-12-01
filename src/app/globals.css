@@ -54,8 +54,33 @@ li strong {
   color: #333;
 }
 
-.container {
-  max-width: 800px;
-  margin: 2rem auto;
+.site-container {
+  width: 100%;
+  margin: 0 auto;
+  background-color: gray;
+}
+
+.search-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: orangered;
+}
+
+.search {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 1rem;
+}
+
+.content-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 900px;
   padding: 1rem;
 }
