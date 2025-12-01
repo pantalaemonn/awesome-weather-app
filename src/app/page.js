@@ -27,8 +27,8 @@ export default function Home() {
   if (!weatherData) return <p>Loading weather...</p>;
 
   return (
-    <div class="container">
-      <div class="card">
+    <div className="container">
+      <div className="card">
         <h1>7-Day Weather Forecast</h1>
         <ul>
           {weatherData.daily.time.map((day, index) => (
