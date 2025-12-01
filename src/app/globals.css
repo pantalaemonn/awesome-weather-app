@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Container */
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* allows cards to wrap to new lines */
+  gap: 1rem; /* spacing between cards */
+}
+
+/* Card */
+li {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px; /* fixed width for cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+li strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
