@@ -9,7 +9,7 @@ export default function DayCard({
 }) {
   return (
     <div className="grid">
-      <div className="w-[900px] text-2xl p-4 border-1 border-gray-400 rounded-lg shadow-sm">
+      <div className="w-[900px] text-2xl p-4 border-1 border-gray-400 rounded-lg shadow-sm fade-in">
         <h2 className="text-4xl font-semibold mb-2 text-gray-400">{weekday}</h2>
         <p className="text-gray-400">Date: {day}</p>
         <p className="text-gray-400">Max Temp: {maxTemp}°C</p>
