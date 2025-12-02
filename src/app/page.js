@@ -41,6 +41,7 @@ export default function Home() {
           />
           <h2 className="text-xl text-white mb-4">{location}</h2>
           <DayCard
+            key={weatherData ? weatherData.daily.time[currentDayIndex] : "initial"}
             day={weatherData ? weatherData.daily.time[currentDayIndex] : ""}
             weekday={weekDay}
             maxTemp={weatherData ? weatherData.daily.temperature_2m_max[currentDayIndex] : ""}
