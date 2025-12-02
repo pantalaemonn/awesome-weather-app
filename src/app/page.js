@@ -63,7 +63,7 @@ export default function Home() {
                   className="bg-white border rounded shadow p-4 w-48 cursor-grab"
                   onClick={() => selectDay(index)}
                 >
-                  <strong>{day}</strong> <br />
+                  <strong>{getWeekDayName(day)}</strong> <br />
                   Max Temp: {weatherData.daily.temperature_2m_max[index]}°C{" "}
                   <br />
                   Min Temp: {weatherData.daily.temperature_2m_min[index]}°C{" "}
