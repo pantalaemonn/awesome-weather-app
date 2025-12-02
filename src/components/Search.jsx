@@ -1,31 +1,51 @@
 "use client";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function SearchBar({ handleWeatherData, handleLocationChange }) {
+    const responseStatusCheck = (responseObject) => {
+        console.log("responseStatusCheck called with:", responseObject);
+        if (responseObject.status >= 200 && responseObject.status < 300) {
+            return responseObject;
+        }
+
+        throw new Error(responseObject.statusText);
+    }
+    
   const fetchWeather = async (lat, lon, name, country) => {
-    const res = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,rain_sum,showers_sum,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum&current=wind_speed_10m,snowfall,showers,rain,temperature_2m&wind_speed_unit=mph&timezone=auto`
-    );
-    const data = await res.json();
-    console.log(data);
-    handleWeatherData(data);
-    handleLocationChange(`${name}, ${country}`);
+    try {
+        const res = await axios.get(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,rain_sum,showers_sum,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum&current=wind_speed_10m,snowfall,showers,rain,temperature_2m&wind_speed_unit=mph&timezone=auto`
+        );
+        responseStatusCheck(res);
+        handleWeatherData(res.data);
+        handleLocationChange(`${name}, ${country}`);
+    
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        console.log("error:", error.message);
+    }
   };
 
   // Search handler
   const handleSearch = async (query) => {
-    console.log("handle search called");
-    const res = await fetch(
-      `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=1`
-    );
-    const data = await res.json();
-    console.log(data);
+    try {
+        const res = await axios.get(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=1`
+        );
 
-    if (data.results && data.results.length > 0) {
-      const { latitude, longitude, name, country } = data.results[0];
-      fetchWeather(latitude, longitude, name, country);
-    } else {
-      alert("Location not found!");
+        responseStatusCheck(res);
+
+        if (res.data.results && res.data.results.length > 0) {
+        const { latitude, longitude, name, country } = res.data.results[0];
+        fetchWeather(latitude, longitude, name, country);
+        } else {
+        alert("Location not found!");
+        }
+
+    } catch (error) {
+        console.error("Error fetching location data:", error);
+        console.log("error:", error.message);
     }
   };
 
