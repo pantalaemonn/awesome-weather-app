@@ -7,6 +7,27 @@ export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState("Sheffield");
 
+  const [currentDayIndex, setCurrentDayIndex] = useState(0);
+  const [weekDay, setWeekDay] = useState("Today")
+
+  const getWeekDayName = (dateString, index) => {
+    if (index == 0) {
+      return "Today";
+    } else if (index == 1) {
+      return "Tomorrow";
+    }
+  
+    return new Date(dateString).toLocaleDateString("en-GB", {
+      weekday: "long", // "Monday", "Tuesday", etc.
+    });
+  };
+
+  const selectDay = (index) => {
+    setCurrentDayIndex(index);
+    const newWeekDay = getWeekDayName(weatherData.daily.time[index], index);
+    setWeekDay(newWeekDay);
+  }
+
   return (
     <div className="site-container">
       <div className="search-container">
@@ -20,9 +41,13 @@ export default function Home() {
           />
           <h2 className="text-xl text-white mb-4">{location}</h2>
           <DayCard
-            day={weatherData ? weatherData.daily.time[0] : ""}
-            maxTemp={weatherData ? weatherData.daily.temperature_2m_max[0] : ""}
-            minTemp={weatherData ? weatherData.daily.temperature_2m_min[0] : ""}
+            day={weatherData ? weatherData.daily.time[currentDayIndex] : ""}
+            weekday={weekDay}
+            maxTemp={weatherData ? weatherData.daily.temperature_2m_max[currentDayIndex] : ""}
+            minTemp={weatherData ? weatherData.daily.temperature_2m_min[currentDayIndex] : ""}
+            rain={weatherData ? weatherData.daily.rain_sum[currentDayIndex] : ""}
+            windSpeed={weatherData ? weatherData.daily.wind_speed_10m_max[currentDayIndex] : ""}
+            snowfall={weatherData ? weatherData.daily.snowfall_sum[currentDayIndex] : ""}
           />
         </div>
       </div>
@@ -34,8 +59,9 @@ export default function Home() {
             <ul className="flex flex-wrap gap-2 w-[900px] ">
               {weatherData.daily.time.map((day, index) => (
                 <li
-                  key={day}
-                  className="bg-white border rounded shadow p-4 w-48"
+                  key={index}
+                  className="bg-white border rounded shadow p-4 w-48 cursor-grab"
+                  onClick={() => selectDay(index)}
                 >
                   <strong>{day}</strong> <br />
                   Max Temp: {weatherData.daily.temperature_2m_max[index]}°C{" "}
