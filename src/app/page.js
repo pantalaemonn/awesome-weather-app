@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import SearchBar from "@/components/Search";
+import DayCard from "@/components/DayCard";
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
@@ -40,17 +41,24 @@ export default function Home() {
     <div className="site-container">
       <div className="search-container">
         <div className="search">
-          <SearchBar onSearch={handleSearch} />{" "}
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Search for a location
+          </h2>
+          <SearchBar onSearch={handleSearch} />
+          <h2 className="text-xl text-white mb-4">{location}</h2>
+          <DayCard
+            day={weatherData ? weatherData.daily.time[0] : ""}
+            maxTemp={weatherData ? weatherData.daily.temperature_2m_max[0] : ""}
+            minTemp={weatherData ? weatherData.daily.temperature_2m_min[0] : ""}
+          />
         </div>
       </div>
       <div className="content-container">
         <div className="content">
-          <h1 className="text-2xl font-bold mb-4">Weather Forecast</h1>
-          <h2 className="text-xl mb-4">{location}</h2>
           {!weatherData ? (
             <p>Loading weather...</p>
           ) : (
-            <ul className="flex flex-wrap gap-4">
+            <ul className="flex flex-wrap gap-2 w-[900px] ">
               {weatherData.daily.time.map((day, index) => (
                 <li
                   key={day}
