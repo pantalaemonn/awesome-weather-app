@@ -15,7 +15,7 @@ export default function SearchBar({ handleWeatherData, handleLocationChange }) {
   const fetchWeather = async (lat, lon, name, country) => {
     try {
         const res = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,rain_sum,showers_sum,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum&current=wind_speed_10m,snowfall,showers,rain,temperature_2m&wind_speed_unit=mph&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max`
         );
         responseStatusCheck(res);
         handleWeatherData(res.data);

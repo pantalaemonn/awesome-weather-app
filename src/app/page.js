@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "@/components/Search";
 import DayCard from "@/components/DayCard";
+import { getWeatherDescription } from "@/utils/weatherCodes"
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
@@ -48,7 +49,7 @@ export default function Home() {
             minTemp={weatherData ? weatherData.daily.temperature_2m_min[currentDayIndex] : ""}
             rain={weatherData ? weatherData.daily.rain_sum[currentDayIndex] : ""}
             windSpeed={weatherData ? weatherData.daily.wind_speed_10m_max[currentDayIndex] : ""}
-            snowfall={weatherData ? weatherData.daily.snowfall_sum[currentDayIndex] : ""}
+            weatherDescription={getWeatherDescription(weatherData ? weatherData.daily.weather_code[currentDayIndex] : "")}
           />
         </div>
       </div>

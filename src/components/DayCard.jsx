@@ -5,7 +5,7 @@ export default function DayCard({
   minTemp,
   rain,
   windSpeed,
-  snowfall,
+  weatherDescription,
 }) {
   return (
     <div className="grid">
@@ -16,7 +16,7 @@ export default function DayCard({
         <p className="text-gray-400">Min Temp: {minTemp}°C</p>
         <p className="text-gray-400">Rain: {rain} mm</p>
         <p className="text-gray-400">Wind: {windSpeed} mph</p>
-        <p className="text-gray-400">Snowfall: {snowfall} cm</p>
+        <p className="text-gray-200">Description: {weatherDescription}</p>
       </div>
     </div>
   );
