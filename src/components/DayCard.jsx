@@ -3,20 +3,25 @@ export default function DayCard({
   weekday,
   maxTemp,
   minTemp,
-  rain,
   windSpeed,
   weatherDescription,
+  currentTemp,
 }) {
   return (
-    <div className="grid">
-      <div className="w-[900px] text-2xl p-4 border-1 border-gray-400 rounded-lg shadow-sm fade-in">
-        <h2 className="text-4xl font-semibold mb-2 text-gray-400">{weekday}</h2>
-        <p className="text-gray-400">Date: {day}</p>
-        <p className="text-gray-400">Max Temp: {maxTemp}°C</p>
-        <p className="text-gray-400">Min Temp: {minTemp}°C</p>
-        <p className="text-gray-400">Rain: {rain} mm</p>
+    <div className="parent">
+      <div className="div1">
+        <p className="archivo-header pr-4">
+          {currentTemp}
+          <span>°c</span>
+        </p>
+      </div>
+      <div className="div2">
+        <p className="text-gray-400">
+          Min: {minTemp}°c / Max: {maxTemp}°c
+        </p>
+      </div>
+      <div className="div3">
         <p className="text-gray-400">Wind: {windSpeed} mph</p>
-        <p className="text-gray-200">Description: {weatherDescription}</p>
       </div>
     </div>
   );
