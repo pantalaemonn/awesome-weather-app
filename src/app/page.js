@@ -5,6 +5,7 @@ import DayCard from "@/components/DayCard";
 import NavBar from "@/components/NavBar";
 import DropDown from "@/components/DropDown";
 import { getWeatherDescription } from "@/utils/weatherCodes";
+import { weatherCodeToIcon } from "@/utils/weatherIcons";
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
@@ -48,13 +49,14 @@ export default function Home() {
             <h2 className="text-xl text-gray-700 mb-4">{location}</h2>
             <h2 className="text-xl text-gray-700 mb-4">{weekDay}</h2>
           </div>
+
           <DayCard
             key={
               weatherData ? weatherData.daily.time[currentDayIndex] : "initial"
             }
             currentTemp={
               weatherData
-                ? weatherData.daily.temperature_2m_max[currentDayIndex] // or min, or avg depending on your API
+                ? weatherData.daily.temperature_2m_max[currentDayIndex]
                 : ""
             }
             maxTemp={
@@ -75,6 +77,9 @@ export default function Home() {
             weatherDescription={getWeatherDescription(
               weatherData ? weatherData.daily.weather_code[currentDayIndex] : ""
             )}
+            weatherCode={
+              weatherData ? weatherData.daily.weather_code[currentDayIndex] : ""
+            }
           />
           <div className="weekly-cards">
             {!weatherData ? (

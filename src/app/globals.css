@@ -115,6 +115,7 @@ li strong {
   text-box: auto;
   place-content: end;
   font-size: 8rem;
+  position: relative;
 }
 
 .div2 {
@@ -214,6 +215,14 @@ input {
   font-size: 4rem;
 }
 
+.weathericon {
+  position: absolute;
+  left: 2rem;
+  font-size: 10rem;
+  top: 2rem;
+  z-index: -1;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -227,6 +236,26 @@ input {
 
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
+}
+
+@font-face {
+  font-family: "MeteoconsRegular";
+  src: url("/fonts/meteocons-webfont.woff") format("woff"),
+    url("/fonts/meteocons-webfont.ttf") format("truetype"),
+    url("/fonts/meteocons-webfont.svg#MeteoconsRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon:before {
+  font-family: "MeteoconsRegular";
+  content: attr(data-icon);
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 }
 
 @media screen and (max-width: 740px) {

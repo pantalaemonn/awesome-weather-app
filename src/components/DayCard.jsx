@@ -1,15 +1,21 @@
+import { weatherCodeToIcon } from "@/utils/weatherIcons";
+
 export default function DayCard({
-  day,
-  weekday,
+  currentTemp,
   maxTemp,
   minTemp,
   windSpeed,
+  weatherCode,
   weatherDescription,
-  currentTemp,
 }) {
+  const iconChar = weatherCodeToIcon[weatherCode] || "B"; // fallback icon
   return (
     <div className="parent">
       <div className="div1">
+        <span
+          className="weathericon icon text-4xl text-emerald-500"
+          data-icon={iconChar}
+        ></span>
         <p className="archivo-header pr-4">
           {currentTemp}
           <span>°c</span>
