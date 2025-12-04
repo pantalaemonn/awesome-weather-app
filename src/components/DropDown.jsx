@@ -23,7 +23,7 @@ export default function DropDown({ handleWeatherData, handleLocationChange }) {
   const fetchWeather = async (location) => {
     try {
       const res = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max`
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max&current=temperature_2m`
       );
 
       responseStatusCheck(res);

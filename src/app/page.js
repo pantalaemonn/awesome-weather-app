@@ -100,9 +100,9 @@ export default function Home() {
                       <h3 className="weekly-cards">
                         {getWeekDayName(day, index)}
                       </h3>{" "}
-                      <br />
-                      Now: {weatherData.daily.temperature_2m_min[index]}°C{" "}
-                      <br />
+                      {getWeekDayName(day, index) == "Today" ? (`Now: ${weatherData.current.temperature_2m}°C${" "}`) : null}
+            
+   
                       Max: {weatherData.daily.temperature_2m_max[index]}°C{" "}
                       <br />
                       Min: {weatherData.daily.temperature_2m_min[index]}°C{" "}
