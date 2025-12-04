@@ -3,62 +3,68 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { presetLocations } from "@/utils/locations";
 
-export default function SearchBar({ handleWeatherData, handleLocationChange }) {
-    // Initialise selected key to the first location
-    const locationKeys = Object.keys(presetLocations);
-    const defaultKey = locationKeys[0];
-    const [selectedKey, setSelectedKey] = useState(defaultKey);
+export default function DropDown({ handleWeatherData, handleLocationChange }) {
+  // Initialise selected key to the first location
+  const locationKeys = Object.keys(presetLocations);
+  const defaultKey = locationKeys[0];
+  const [selectedKey, setSelectedKey] = useState(defaultKey);
 
-    // Check that response status is between 200 and 299, otherwise throw error
-    const responseStatusCheck = (responseObject) => {
-        console.log("responseStatusCheck called with:", responseObject);
-        if (responseObject.status >= 200 && responseObject.status < 300) {
-            return responseObject;
-        }
-
-        throw new Error(responseObject.statusText);
+  // Check that response status is between 200 and 299, otherwise throw error
+  const responseStatusCheck = (responseObject) => {
+    console.log("responseStatusCheck called with:", responseObject);
+    if (responseObject.status >= 200 && responseObject.status < 300) {
+      return responseObject;
     }
-    
-    // Fetch weather data from API
-    const fetchWeather = async (location) => {
-        try {
-            const res = await axios.get(
-                `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max`
-            );
 
-            responseStatusCheck(res);
+    throw new Error(responseObject.statusText);
+  };
 
-            handleWeatherData(res.data);
+  // Fetch weather data from API
+  const fetchWeather = async (location) => {
+    try {
+      const res = await axios.get(
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max`
+      );
 
-            handleLocationChange(`${location.name}`);
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-            console.log("error:", error.message);
-        }
-    };
+      responseStatusCheck(res);
 
-    // When the dropdown changes
-    const handleLocationSelect = (e) => {
-        setSelectedKey(e.target.value);
-    };
+      handleWeatherData(res.data);
 
-    // Loads the default location
-    useEffect(() => {
-        const location = presetLocations[selectedKey];
+      handleLocationChange(`${location.name}`);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+      console.log("error:", error.message);
+    }
+  };
 
-        if (location) fetchWeather(location);
-    }, [selectedKey]);
+  // When the dropdown changes
+  const handleLocationSelect = (e) => {
+    setSelectedKey(e.target.value);
+  };
 
-    return (
-        <div className="text-white">
-            <select value={selectedKey} onChange={handleLocationSelect} className="focus:outline-none">
-                {Object.keys(presetLocations).map((key) => {
-                    const location = presetLocations[key];
-                    return (
-                    <option value={key} key={key}>{location.name}</option>
-                    )
-                })}
-            </select>
-        </div>
-    );
+  // Loads the default location
+  useEffect(() => {
+    const location = presetLocations[selectedKey];
+
+    if (location) fetchWeather(location);
+  }, [selectedKey]);
+
+  return (
+    <div className="text-gray-600 text-right pb-4">
+      <select
+        value={selectedKey}
+        onChange={handleLocationSelect}
+        className="max-w-[300px] border border-gray-700 rounded-md bg-white text-gray-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+      >
+        {Object.keys(presetLocations).map((key) => {
+          const location = presetLocations[key];
+          return (
+            <option value={key} key={key}>
+              {location.name}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
 }

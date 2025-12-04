@@ -23,6 +23,9 @@ export default function DayCard({
       <div className="div3">
         <p className="text-gray-400">Wind: {windSpeed} mph</p>
       </div>
+      <div className="div4">
+        <p className="text-gray-400">{weatherDescription}</p>
+      </div>
     </div>
   );
 }

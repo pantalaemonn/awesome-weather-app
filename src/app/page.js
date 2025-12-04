@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "@/components/Search";
 import DayCard from "@/components/DayCard";
 import NavBar from "@/components/NavBar";
+import DropDown from "@/components/DropDown";
 import { getWeatherDescription } from "@/utils/weatherCodes";
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
       <div className="menu">
         <NavBar />
         <div className="search">
-          <SearchBar
+          <DropDown
             handleWeatherData={(data) => setWeatherData(data)}
             handleLocationChange={(data) => setLocation(data)}
           />
@@ -51,7 +52,11 @@ export default function Home() {
             key={
               weatherData ? weatherData.daily.time[currentDayIndex] : "initial"
             }
-            currentTemp={weatherData ? weatherData.current.temperature_2m : ""}
+            currentTemp={
+              weatherData
+                ? weatherData.daily.temperature_2m_max[currentDayIndex] // or min, or avg depending on your API
+                : ""
+            }
             maxTemp={
               weatherData
                 ? weatherData.daily.temperature_2m_max[currentDayIndex]
