@@ -204,6 +204,28 @@ li strong {
   margin-left: 0.6rem;
 }
 
+.user-profile {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 2px solid #333;
+  max-width: 900px;
+  min-height: 500px;
+  background-image: url("/profilebg.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.visiting {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 2px solid #333;
+  max-width: 900px;
+  min-height: 500px;
+  background-image: url("/profilebg.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
 input {
   color: gray;
   border: 2px solid;

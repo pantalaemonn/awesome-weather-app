@@ -4,7 +4,12 @@ import axios from "axios";
 import { presetLocations } from "@/utils/locations";
 import Image from "next/image";
 
-export default function DropDown({ handleWeatherData, handleLocationChange }) {
+export default function DropDown({
+  handleWeatherData,
+  handleLocationChange,
+  onImageClick,
+  onButtonClick,
+}) {
   // Initialise selected key to the first location
   const locationKeys = Object.keys(presetLocations);
   const defaultKey = locationKeys[0];
@@ -72,6 +77,7 @@ export default function DropDown({ handleWeatherData, handleLocationChange }) {
         width={34}
         height={35}
         className="inline pl-2"
+        onClick={onImageClick}
       />
     </div>
   );
