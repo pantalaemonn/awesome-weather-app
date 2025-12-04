@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { presetLocations } from "@/utils/locations";
+import Image from "next/image";
 
 export default function DropDown({ handleWeatherData, handleLocationChange }) {
   // Initialise selected key to the first location
@@ -65,6 +66,13 @@ export default function DropDown({ handleWeatherData, handleLocationChange }) {
           );
         })}
       </select>
+      <Image
+        src="/profile.png"
+        alt="Profile"
+        width={34}
+        height={35}
+        className="inline pl-2"
+      />
     </div>
   );
 }
