@@ -5,13 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 /*
 @media (prefers-color-scheme: dark) {
   :root {
@@ -22,27 +15,29 @@
 */
 
 body {
-  background: gray;
+  background: #f2f2f2;
+  background-image: url(../bg.jpg);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0 auto;
 }
 
+*,
+:after,
+:before,
+::backdrop {
+  box-sizing: unset;
+}
+
 ul {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: nowrap; /* allows cards to wrap to new lines */
-  gap: 1rem; /* spacing between cards */
 }
 
 /* Card */
 li {
   color: #a3a3a3;
-  background: linear-gradient(45deg, #4f4f4f, transparent);
   border: 1px solid #808080;
-  border-radius: 8px;
-  width: 30%;
   padding: 1rem;
   box-shadow: 0 2px 5px #0000001a;
 }
@@ -57,44 +52,144 @@ li strong {
 .site-container {
   width: 100%;
   margin: 0 auto;
-  background-color: gray;
 }
 
-.search-container {
-  /*background-color: #ff4500;*/
-  width: 100%;
+.menu {
   margin: 0 auto;
-  padding: 1rem;
-  background: linear-gradient(45deg, #25435f, transparent);
+  min-width: 900px;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #1da876;
+  padding-top: 3rem;
+}
+
+.location {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #333;
+  padding-top: 1rem;
+  font-family: "Major Mono Display";
+  text-transform: lowercase;
 }
 
 .search {
   margin: 0 auto;
-  max-width: 900px;
-  padding: 1rem;
+  width: 40%;
+  align-content: end;
 }
 
 .content-container {
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
 }
 
 .content {
   margin: 0 auto;
   max-width: 900px;
-  padding: 1rem;
-}
-
-.nav-container {
-  width: 100%;
-  margin: 0 auto;
-  background-color: #000;
 }
 
 .nav-content {
   margin: 0 auto;
-  max-width: 900px;
+  width: 60%;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.div1 {
+  grid-column: span 3 / span 3;
+  grid-row: span 4 / span 4;
+  border-left: 2px solid #333;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  text-align: -webkit-right;
+  text-box: auto;
+  place-content: end;
+}
+
+.div2 {
+  grid-column: span 4 / span 4;
+  grid-row: span 2 / span 2;
+  grid-column-start: 4;
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+  place-content: space-evenly;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+.div3 {
+  grid-column: span 4 / span 4;
+  grid-row: span 2 / span 2;
+  grid-column-start: 4;
+  grid-row-start: 3;
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+  place-content: space-evenly;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+.weekly-cards {
+  border: 2px solid #333;
+  border-top: 0px;
+  gap: 0rem;
+}
+
+.flex-item {
+  color: gray;
+  flex: 1;
+}
+
+.flex-item ul {
+  gap: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item li {
+  border-radius: 0px;
+  max-width: 94px;
+}
+
+input {
+  color: gray;
+  border: 2px solid;
+}
+
+.major-mono-display-regular {
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.archivo-header {
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
+  font-variation-settings: "wdth" 100;
+  font-size: 10rem;
+}
+
+.archivo-header span {
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+  font-variation-settings: "wdth" 100;
+  font-size: 4rem;
 }
 
 @keyframes fadeIn {
@@ -110,4 +205,24 @@ li strong {
 
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
+}
+
+@media screen and (max-width: 740px) {
+  .archivo-header {
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: italic;
+    font-variation-settings: "wdth" 100;
+    font-size: 4rem;
+  }
+
+  .archivo-header span {
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+    font-variation-settings: "wdth" 100;
+    font-size: 1rem;
+  }
 }
