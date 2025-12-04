@@ -115,6 +115,10 @@ export default function Home() {
               </div>
             )}{" "}
           </div>
+          <div className="more-info">
+            <span>a history of location</span>
+            <span>visiting advice</span>
+          </div>
         </div>
       </div>
     </div>

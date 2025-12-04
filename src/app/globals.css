@@ -60,6 +60,9 @@ li strong {
   justify-content: space-between;
   border-bottom: 2px solid #1da876;
   padding-top: 3rem;
+  background: url(/navbg.png);
+  background-repeat: no-repeat;
+  background-position: bottom right;
 }
 
 .location {
@@ -186,6 +189,22 @@ li strong {
   max-width: 94px;
 }
 
+.more-info {
+  width: 100%;
+  text-align: right;
+  padding-top: 1rem;
+}
+
+.more-info span {
+  background-color: #333;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Major Mono Display", monospace;
+  text-transform: lowercase;
+  margin-left: 0.6rem;
+}
+
 input {
   color: gray;
   border: 2px solid;
@@ -221,6 +240,7 @@ input {
   font-size: 10rem;
   top: 2rem;
   z-index: -1;
+  color: #00dfd1;
 }
 
 @keyframes fadeIn {
