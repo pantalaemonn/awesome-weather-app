@@ -14,7 +14,7 @@ export default function VisitingAdvice({
   return (
     <div className="visiting">
       <div className="fade-in">
-        <div className="border-l-2 border-b-2 border-r-2 border-black">
+        <div className="text-gray-700">
           <h2 className="p-3 font-semibold text-2xl mb-2">
             Visiting advice for {location}
           </h2>

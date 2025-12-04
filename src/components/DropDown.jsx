@@ -76,7 +76,7 @@ export default function DropDown({
         alt="Profile"
         width={34}
         height={35}
-        className="inline pl-2"
+        className="inline pl-2 cursor-pointer"
         onClick={onImageClick}
       />
     </div>

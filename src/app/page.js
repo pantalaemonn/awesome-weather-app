@@ -18,15 +18,15 @@ export default function Home() {
   const [activeView, setActiveView] = useState("weather");
 
   const handleBackToWeather = () => {
-    setActiveView("weather");
+    setActiveView("weather"); // switch to Weather
   };
 
   const profileView = () => {
-    setActiveView("profile"); // switch to User Profile view
+    setActiveView("profile"); // switch to User Profile
   };
 
-  const handleButtonClick = () => {
-    setActiveView("advice"); // switch to Visiting Advice view
+  const adviceView = () => {
+    setActiveView("advice"); // switch to Visiting Advice
   };
 
   const getWeekDayName = (dateString, index) => {
@@ -51,7 +51,7 @@ export default function Home() {
     <div className="site-container">
       <div className="menu">
         <NavBar
-          visitingAdvice={handleButtonClick}
+          visitingAdvice={adviceView}
           onImageClick={handleBackToWeather}
         />
         <div className="search">
@@ -147,7 +147,7 @@ export default function Home() {
 
             <div className="more-info">
               <span>a history of location</span>
-              <span onClick={handleButtonClick}>visiting advice</span>
+              <span onClick={adviceView}>visiting advice</span>
             </div>
           </div>
         ) : (
