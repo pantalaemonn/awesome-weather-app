@@ -257,6 +257,50 @@ input {
   animation: fadeIn 0.6s ease-in-out;
 }
 
+@keyframes lineFadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stagger-item-left {
+  opacity: 0;
+  animation-name: lineFadeInLeft;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+
+  /* delay = index * 0.08s (the index comes from the inline style) */
+  animation-delay: calc(var(--stagger-index, 0) * 0.08s);
+}
+
+@keyframes lineFadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stagger-item-right {
+  opacity: 0;
+  animation-name: lineFadeInRight;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+
+  /* delay = index * 0.08s (the index comes from the inline style) */
+  animation-delay: calc(var(--stagger-index, 0) * 0.08s);
+}
+
 @font-face {
   font-family: "MeteoconsRegular";
   src: url("/fonts/meteocons-webfont.woff") format("woff"),

@@ -14,24 +14,24 @@ export default function DayCard({
       <div className="parent">
         <div className="div1">
           <span
-            className="weathericon icon text-4xl text-emerald-500"
+            className="weathericon icon text-4xl text-emerald-500 stagger-item-left" style={{ "--stagger-index": 1}}
             data-icon={iconChar}
           ></span>
-          <p className="archivo-header pr-4">
+          <p className="archivo-header pr-4 stagger-item-left" style={{ "--stagger-index": 1}}>
             {currentTemp}
             <span>°c</span>
           </p>
         </div>
         <div className="div2">
-          <p className="text-gray-400">
+          <p className={`stagger-item-right text-gray-400`} style={{ "--stagger-index": 3}}>
             Min: {minTemp}°c / Max: {maxTemp}°c
           </p>
         </div>
         <div className="div3">
-          <p className="text-gray-400">Wind: {windSpeed} mph</p>
+          <p className={`stagger-item-right text-gray-400`} style={{ "--stagger-index": 4}}>Wind: {windSpeed} mph</p>
         </div>
         <div className="div4">
-          <p className="text-gray-400">{weatherDescription}</p>
+          <p className={`stagger-item-right text-gray-400`} style={{ "--stagger-index": 5}}>{weatherDescription}</p>
         </div>
       </div>
     </div>
