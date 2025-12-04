@@ -36,10 +36,8 @@ ul {
 
 /* Card */
 li {
-  color: #a3a3a3;
-  border: 1px solid #808080;
+  border: 1px solid #c9c9c9;
   padding: 1rem;
-  box-shadow: 0 2px 5px #0000001a;
 }
 
 li strong {
@@ -163,6 +161,13 @@ li strong {
   gap: 0rem;
 }
 
+.weekly-cards h3 {
+  font-family: "Major Mono Display", monospaces;
+  text-transform: lowercase;
+  font-size: 1.2rem;
+  border: 0px;
+}
+
 .flex-item {
   color: gray;
   flex: 1;
@@ -197,6 +202,7 @@ input {
   font-weight: 600;
   font-style: italic;
   font-variation-settings: "wdth" 100;
+  color: #333;
 }
 
 .archivo-header span {

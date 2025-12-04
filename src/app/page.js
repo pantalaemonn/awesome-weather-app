@@ -17,11 +17,11 @@ export default function Home() {
     if (index == 0) {
       return "Today";
     } else if (index == 1) {
-      return "Tomorrow";
+      return "Tmrw";
     }
 
     return new Date(dateString).toLocaleDateString("en-GB", {
-      weekday: "long", // "Monday", "Tuesday", etc.
+      weekday: "short", // "Mon", "Tue", etc.
     });
   };
 
@@ -45,8 +45,8 @@ export default function Home() {
       <div className="content-container">
         <div className="content">
           <div className="location">
-            <h2 className="text-xl text-gray-400 mb-4">{location}</h2>
-            <h2 className="text-xl text-gray-500 mb-4">{weekDay}</h2>
+            <h2 className="text-xl text-gray-700 mb-4">{location}</h2>
+            <h2 className="text-xl text-gray-700 mb-4">{weekDay}</h2>
           </div>
           <DayCard
             key={
@@ -85,18 +85,24 @@ export default function Home() {
                   {weatherData.daily.time.map((day, index) => (
                     <li
                       key={index}
-                      className="cursor-grab"
                       onClick={() => selectDay(index)}
+                      className={`cursor-grab p-2 rounded-md 
+        ${
+          currentDayIndex === index
+            ? "bg-emerald-500 bg-opacity-50 text-white"
+            : "bg-none text-gray-500 hover:bg-gray-500 hover:text-white"
+        }`}
                     >
-                      <strong>{getWeekDayName(day)}</strong> <br />
-                      Current Temp:{weatherData.daily.temperature_2m_min[index]}
-                      °C <br />
-                      Max Temp: {
-                        weatherData.daily.temperature_2m_max[index]
-                      }°C <br />
-                      Min Temp: {
-                        weatherData.daily.temperature_2m_min[index]
-                      }°C <br />
+                      <h3 className="weekly-cards">
+                        {getWeekDayName(day, index)}
+                      </h3>{" "}
+                      <br />
+                      Now: {weatherData.daily.temperature_2m_min[index]}°C{" "}
+                      <br />
+                      Max: {weatherData.daily.temperature_2m_max[index]}°C{" "}
+                      <br />
+                      Min: {weatherData.daily.temperature_2m_min[index]}°C{" "}
+                      <br />
                       Wind: {weatherData.daily.wind_speed_10m_max[index]} mph
                     </li>
                   ))}
