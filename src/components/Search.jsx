@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export default function SearchBar({ handleWeatherData, handleLocationChange }) {
   const responseStatusCheck = (responseObject) => {
@@ -79,6 +80,13 @@ export default function SearchBar({ handleWeatherData, handleLocationChange }) {
           Search
         </button>
       </form>
+      <Image
+        src="/profile.png"
+        alt="Profile"
+        width={200}
+        height={200}
+        className="mx-auto"
+      />
     </div>
   );
 }
