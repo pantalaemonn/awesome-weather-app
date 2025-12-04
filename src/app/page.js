@@ -10,7 +10,7 @@ import VisitingAdvice from "@/components/VisitingAdvice";
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState("Sheffield");
+  const [location, setLocation] = useState("Fernilee Reservoir Circular from Goyt Valley");
 
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [weekDay, setWeekDay] = useState("Today");
