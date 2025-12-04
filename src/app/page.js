@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import SearchBar from "@/components/Search";
 import DayCard from "@/components/DayCard";
 import NavBar from "@/components/NavBar";
 import DropDown from "@/components/DropDown";
@@ -47,7 +46,7 @@ export default function Home() {
         <div className="content">
           <div className="location">
             <h2 className="text-xl text-gray-700 mb-4">{location}</h2>
-            <h2 className="text-xl text-gray-700 mb-4">{weekDay}</h2>
+            <h2 className="text-xl text-gray-700 mb-4">{weekDay == "Tmrw" ? "Tomorrow" : weekDay}</h2>
           </div>
 
           <DayCard
