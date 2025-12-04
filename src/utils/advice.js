@@ -1,4 +1,4 @@
-export const weatherCodes = {
+export const weatherCodeToAdvice = {
     0: "Perfect hiking weather, but still take care. Wear light, breathable layers and comfortable walking boots. Bring sunglasses, a hat, and sunscreen - even in the UK, UV can be strong on exposed hills and ridges. Carry at least 1-2L of water, especially on longer walks, and don't forget a light extra layer in case temperatures drop later or on higher ground.",
 
     1: "Generally fine for walking. Dress in light to medium layers that you can add or remove as the cloud cover changes. A thin waterproof or windproof jacket is still a good idea in case of passing showers or chilly winds on exposed tops. Visibility is usually good, but cloud can drop quickly in the Peak District, so always carry a map/compass or reliable offline navigation.",
@@ -39,8 +39,4 @@ export const weatherCodes = {
 
     96: "This is some of the worst hiking weather: lightning, strong rain, and hail that can be painful and make the ground extremely slippery. Best advice: don't plan a Peak District hike in this if you can avoid it. If you're already out and a hail thunderstorm hits, get off high/exposed ground as quickly and safely as possible and avoid summits, ridges, and lone trees. Protect your head with a hood or hat; hail can reduce visibility and make rocks/paths treacherous. Wait for the worst of the storm to pass before continuing, and be ready to cut the walk short.",
     99: "This is some of the worst hiking weather: lightning, strong rain, and hail that can be painful and make the ground extremely slippery. Best advice: don't plan a Peak District hike in this if you can avoid it. If you're already out and a hail thunderstorm hits, get off high/exposed ground as quickly and safely as possible and avoid summits, ridges, and lone trees. Protect your head with a hood or hat; hail can reduce visibility and make rocks/paths treacherous. Wait for the worst of the storm to pass before continuing, and be ready to cut the walk short.",
-}
-
-export const getWeatherDescription = (weatherCode) => {
-    return weatherCodes[weatherCode] || "";
 }
