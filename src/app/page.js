@@ -4,13 +4,14 @@ import DayCard from "@/components/DayCard";
 import NavBar from "@/components/NavBar";
 import DropDown from "@/components/DropDown";
 import { getWeatherDescription } from "@/utils/weatherCodes";
-import { weatherCodeToIcon } from "@/utils/weatherIcons";
 import UserProfile from "@/components/Profile";
 import VisitingAdvice from "@/components/VisitingAdvice";
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState("Fernilee Reservoir Circular from Goyt Valley");
+  const [location, setLocation] = useState(
+    "Fernilee Reservoir Circular from Goyt Valley"
+  );
 
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [weekDay, setWeekDay] = useState("Today");
@@ -24,9 +25,17 @@ export default function Home() {
     setBookmarks(savedBookmarks);
   }, []);
 
+  // Derived state: is current location bookmarked?
+  const isBookmarked = bookmarks.includes(location);
+
   const handleBookmark = () => {
-    // Avoid duplicate saves
-    if (!bookmarks.includes(location)) {
+    if (isBookmarked) {
+      // Remove bookmark
+      const updatedBookmarks = bookmarks.filter((b) => b !== location);
+      setBookmarks(updatedBookmarks);
+      localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+    } else {
+      // Add bookmark
       const updatedBookmarks = [...bookmarks, location];
       setBookmarks(updatedBookmarks);
       localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
@@ -39,11 +48,9 @@ export default function Home() {
     localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
   };
 
-  // Load weather data for a bookmarked location
   const loadBookmark = (loc) => {
     setLocation(loc);
 
-    // Fetch weather data again for this location
     fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max&current=temperature_2m`
     )
@@ -56,26 +63,23 @@ export default function Home() {
   };
 
   const handleBackToWeather = () => {
-    setActiveView("weather"); // switch to Weather
+    setActiveView("weather");
   };
 
   const profileView = () => {
-    setActiveView("profile"); // switch to User Profile
+    setActiveView("profile");
   };
 
   const adviceView = () => {
-    setActiveView("advice"); // switch to Visiting Advice
+    setActiveView("advice");
   };
 
   const getWeekDayName = (dateString, index) => {
-    if (index == 0) {
-      return "Today";
-    } else if (index == 1) {
-      return "Tmrw";
-    }
+    if (index === 0) return "Today";
+    if (index === 1) return "Tmrw";
 
     return new Date(dateString).toLocaleDateString("en-GB", {
-      weekday: "short", // "Mon", "Tue", etc.
+      weekday: "short",
     });
   };
 
@@ -100,6 +104,7 @@ export default function Home() {
           />
         </div>
       </div>
+
       <div className="content-container">
         {activeView === "weather" ? (
           <div className="content">
@@ -184,7 +189,6 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          // Render clicked components
           <>
             {activeView === "profile" && (
               <UserProfile
@@ -200,17 +204,27 @@ export default function Home() {
           </>
         )}
 
-        <div className="more-info">
+        <div className="more-info gap-2 mt-4">
           <span
             onClick={handleBookmark}
-            className="bg-teal-500 text-white hover:bg-teal-600"
+            className={`px-3 py-1 rounded cursor-pointer 
+              ${
+                isBookmarked
+                  ? "bg-gray-500 text-white hover:bg-gray-600"
+                  : "bg-teal-500 text-white hover:bg-teal-600"
+              }`}
           >
-            bookmark location
+            {isBookmarked ? "remove bookmark" : "bookmark location"}
           </span>
-          <span className="bg-gray-800 hover:bg-gray-600">
+
+          <span className="px-3 py-1 rounded bg-gray-800 text-white hover:bg-gray-600">
             a history of location
           </span>
-          <span className="bg-gray-800 hover:bg-gray-600" onClick={adviceView}>
+
+          <span
+            className="px-3 py-1 rounded bg-gray-800 text-white hover:bg-gray-600"
+            onClick={adviceView}
+          >
             visiting advice
           </span>
         </div>
