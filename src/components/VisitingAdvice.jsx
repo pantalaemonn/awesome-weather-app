@@ -17,20 +17,20 @@ export default function VisitingAdvice({
         <div className="page-title">
           <h1>visiting advice</h1>
         </div>
-        <div className="visiting">
+        <div className="visiting flex">
           <div className="fade-in">
             <div className="text-gray-700">
-              <h2 className="p-3 font-semibold text-2xl mb-2">
+              <h2 className="p-3 font-semibold text-2xl mb-2 w-3/5">
                 Visiting advice for {location}
               </h2>
 
-              <p className="pl-3 mb-2">
+              <p className="pl-3 mb-2 w-3/5">
                 <span className="font-semibold">Current conditions:</span>{" "}
                 {description || "Unknown conditions"}
               </p>
 
               {currentTemp !== undefined && (
-                <p className="pl-3 mb-2">
+                <p className="pl-3 mb-2 w-3/5">
                   <span className="font-semibold">Current temperature:</span>{" "}
                   {currentTemp}°C
                 </p>
@@ -46,7 +46,7 @@ export default function VisitingAdvice({
                 <h3 className="text-xl font-semibold mb-2">
                   Hiker recommendations
                 </h3>
-                <p>{advice}</p>
+                <p className="w-3/5">{advice}</p>
               </div>
             </div>
           </div>

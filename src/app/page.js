@@ -199,7 +199,21 @@ export default function Home() {
             )}
 
             {activeView === "advice" && (
-              <VisitingAdvice onBack={() => setActiveView("weather")} />
+              <VisitingAdvice onBack={() => setActiveView("weather")}
+                location={location}
+
+                weatherCode={
+                weatherData
+                  ? weatherData.daily.weather_code[currentDayIndex]
+                  : ""
+                }
+
+                windSpeed={
+                weatherData
+                  ? weatherData.daily.wind_speed_10m_max[currentDayIndex]
+                  : ""
+                }
+              />
             )}
           </>
         )}
