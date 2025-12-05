@@ -192,16 +192,18 @@ li strong {
   width: 100%;
   text-align: right;
   padding-top: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .more-info span {
-  background-color: #333;
   padding: 0.7rem 1rem;
   color: #fff;
   cursor: pointer;
   font-family: "Major Mono Display", monospace;
   text-transform: lowercase;
   margin-left: 0.6rem;
+  background-color: none;
 }
 
 .user-profile {
@@ -213,6 +215,26 @@ li strong {
   background-image: url("/profilebg.png");
   background-repeat: no-repeat;
   background-position: right;
+  border-top: 0px;
+}
+
+.user-profile h2 {
+  font-family: "Archivo";
+  font-size: 2rem;
+  font-weight: 900;
+  color: #333;
+}
+
+.user-profile h3 {
+  font-family: "Archivo";
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.user-profile li {
+  border-top: 2px solid #4a5565;
+  padding: 1rem;
+  border-bottom: 0px;
 }
 
 .visiting {
@@ -221,9 +243,31 @@ li strong {
   border: 2px solid #333;
   max-width: 900px;
   min-height: 500px;
-  background-image: url("/profilebg.png");
+  background-image: url("/visitingbg.png");
   background-repeat: no-repeat;
   background-position: right;
+  border-top: 0px;
+}
+
+.page-title {
+  text-transform: lowercase;
+  border-bottom: 2px solid #333;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  font-family: Major Mono Display;
+  display: flex;
+  font-size: 1.4rem;
+  padding-bottom: 1rem;
+}
+
+.bookmarks {
+  max-width: 520px;
+}
+
+.bookmarks ul {
+  background: linear-gradient(180deg, #2a969b, transparent);
 }
 
 input {
@@ -378,5 +422,9 @@ input {
   }
   .div4 {
     font-size: 1rem;
+  }
+
+  .more-info span {
+    display: list-item;
   }
 }

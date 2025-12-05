@@ -10,6 +10,7 @@ export default function Navbar({ visitingAdvice, onImageClick }) {
               src="/logo.png"
               alt="Awesome Weather App Logo"
               onClick={onImageClick}
+              className="cursor-pointer"
             />
           </div>
           <div className="space-x-6"></div>
