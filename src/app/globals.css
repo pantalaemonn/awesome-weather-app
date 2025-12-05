@@ -192,16 +192,18 @@ li strong {
   width: 100%;
   text-align: right;
   padding-top: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .more-info span {
-  background-color: #333;
   padding: 0.7rem 1rem;
   color: #fff;
   cursor: pointer;
   font-family: "Major Mono Display", monospace;
   text-transform: lowercase;
   margin-left: 0.6rem;
+  background-color: none;
 }
 
 .user-profile {
@@ -216,6 +218,25 @@ li strong {
   border-top: 0px;
 }
 
+.user-profile h2 {
+  font-family: "Archivo";
+  font-size: 2rem;
+  font-weight: 900;
+  color: #333;
+}
+
+.user-profile h3 {
+  font-family: "Archivo";
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.user-profile li {
+  border-top: 2px solid #4a5565;
+  padding: 1rem;
+  border-bottom: 0px;
+}
+
 .visiting {
   max-width: 900px;
   margin: 0 auto;
@@ -225,6 +246,7 @@ li strong {
   background-image: url("/visitingbg.png");
   background-repeat: no-repeat;
   background-position: right;
+  border-top: 0px;
 }
 
 .page-title {
@@ -238,6 +260,14 @@ li strong {
   display: flex;
   font-size: 1.4rem;
   padding-bottom: 1rem;
+}
+
+.bookmarks {
+  max-width: 520px;
+}
+
+.bookmarks ul {
+  background: linear-gradient(180deg, #2a969b, transparent);
 }
 
 input {
@@ -392,5 +422,9 @@ input {
   }
   .div4 {
     font-size: 1rem;
+  }
+
+  .more-info span {
+    display: list-item;
   }
 }

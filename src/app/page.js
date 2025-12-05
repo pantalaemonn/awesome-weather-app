@@ -17,6 +17,44 @@ export default function Home() {
 
   const [activeView, setActiveView] = useState("weather");
 
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const savedBookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+    setBookmarks(savedBookmarks);
+  }, []);
+
+  const handleBookmark = () => {
+    // Avoid duplicate saves
+    if (!bookmarks.includes(location)) {
+      const updatedBookmarks = [...bookmarks, location];
+      setBookmarks(updatedBookmarks);
+      localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+    }
+  };
+
+  const removeBookmark = (loc) => {
+    const updatedBookmarks = bookmarks.filter((b) => b !== loc);
+    setBookmarks(updatedBookmarks);
+    localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+  };
+
+  // Load weather data for a bookmarked location
+  const loadBookmark = (loc) => {
+    setLocation(loc);
+
+    // Fetch weather data again for this location
+    fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max&current=temperature_2m`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setWeatherData(data);
+        setCurrentDayIndex(0);
+        setWeekDay("Today");
+      });
+  };
+
   const handleBackToWeather = () => {
     setActiveView("weather"); // switch to Weather
   };
@@ -144,17 +182,16 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <div className="more-info">
-              <span>a history of location</span>
-              <span onClick={adviceView}>visiting advice</span>
-            </div>
           </div>
         ) : (
           // Render clicked components
           <>
             {activeView === "profile" && (
-              <UserProfile onBack={() => setActiveView("weather")} />
+              <UserProfile
+                bookmarks={bookmarks}
+                removeBookmark={removeBookmark}
+                onBack={() => setActiveView("weather")}
+              />
             )}
 
             {activeView === "advice" && (
@@ -162,6 +199,21 @@ export default function Home() {
             )}
           </>
         )}
+
+        <div className="more-info">
+          <span
+            onClick={handleBookmark}
+            className="bg-teal-500 text-white hover:bg-teal-600"
+          >
+            bookmark location
+          </span>
+          <span className="bg-gray-800 hover:bg-gray-600">
+            a history of location
+          </span>
+          <span className="bg-gray-800 hover:bg-gray-600" onClick={adviceView}>
+            visiting advice
+          </span>
+        </div>
       </div>
     </div>
   );
