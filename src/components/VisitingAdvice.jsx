@@ -5,8 +5,10 @@ import { getWeatherDescription } from "@/utils/weatherCodes";
 export default function VisitingAdvice({
   location,
   weatherCode,
-  currentTemp,
+  maxTemp,
   windSpeed,
+  selectedDay,
+  onBack
 }) {
   const description = getWeatherDescription(weatherCode);
   const advice = weatherCodeToAdvice[weatherCode];
@@ -14,25 +16,22 @@ export default function VisitingAdvice({
   return (
     <>
       <div className="content fade-in">
-        <div className="page-title">
-          <h1>visiting advice</h1>
-        </div>
         <div className="visiting flex">
-          <div className="fade-in">
+          <div className="fade-in flex flex-col justify-between w-full">
             <div className="text-gray-700">
-              <h2 className="p-3 font-semibold text-2xl mb-2 w-3/5">
-                Visiting advice for {location}
+              <h2 className="p-3 font-semibold text-3xl w-3/5">
+                {selectedDay}
               </h2>
 
               <p className="pl-3 mb-2 w-3/5">
-                <span className="font-semibold">Current conditions:</span>{" "}
+                <span className="font-semibold">Weather conditions:</span>{" "}
                 {description || "Unknown conditions"}
               </p>
 
-              {currentTemp !== undefined && (
+              {maxTemp !== undefined && (
                 <p className="pl-3 mb-2 w-3/5">
-                  <span className="font-semibold">Current temperature:</span>{" "}
-                  {currentTemp}°C
+                  <span className="font-semibold">Peak temperature:</span>{" "}
+                  {maxTemp}°C
                 </p>
               )}
 
@@ -49,6 +48,12 @@ export default function VisitingAdvice({
                 <p className="w-3/5">{advice}</p>
               </div>
             </div>
+            <button
+              onClick={onBack}
+              className="ml-4 mb-4 px-4 py-2 bg-emerald-500 text-white self-start rounded-sm"
+            >
+              Back to Weather
+            </button>
           </div>
         </div>
       </div>

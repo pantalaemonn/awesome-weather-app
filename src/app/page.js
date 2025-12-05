@@ -199,21 +199,31 @@ export default function Home() {
             )}
 
             {activeView === "advice" && (
-              <VisitingAdvice onBack={() => setActiveView("weather")}
-                location={location}
+              <div className="content">
+                <div className="location">
+                  <h2 className="text-xl text-gray-700 mb-4">{location}</h2>
+                  <h2 className="text-xl text-gray-700 mb-4">
+                    {weekDay === "Tmrw" ? "Tomorrow" : weekDay}
+                  </h2>
+                </div>
+                <VisitingAdvice onBack={() => setActiveView("weather")}
+                  location={location}
 
-                weatherCode={
-                weatherData
-                  ? weatherData.daily.weather_code[currentDayIndex]
-                  : ""
-                }
+                  weatherCode={
+                  weatherData
+                    ? weatherData.daily.weather_code[currentDayIndex]
+                    : ""
+                  }
 
-                windSpeed={
-                weatherData
-                  ? weatherData.daily.wind_speed_10m_max[currentDayIndex]
-                  : ""
-                }
-              />
+                  windSpeed={
+                  weatherData
+                    ? weatherData.daily.wind_speed_10m_max[currentDayIndex]
+                    : ""
+                  }
+
+                  selectedDay={weekDay === "Tmrw" ? "Tomorrow" : weekDay}
+                />
+              </div>
             )}
           </>
         )}
